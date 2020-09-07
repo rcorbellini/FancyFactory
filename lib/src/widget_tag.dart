@@ -1,6 +1,8 @@
+import 'dart:convert';
+
+import 'package:fancy_stream/fancy_stream.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tags/flutter_tags.dart';
-import 'package:fancy_stream/fancy_stream.dart';
 
 class WidgetTag<T> extends StatelessWidget {
   final T enumValue;
@@ -51,12 +53,47 @@ class Tag {
   });
 
   Tag copyWith({
-    String descricao,
+    String description,
     bool selected,
   }) {
     return Tag(
-      description: descricao ?? this.description,
+      description: description ?? this.description,
       selected: selected ?? this.selected,
     );
   }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'description': description,
+      'selected': selected,
+    };
+  }
+
+  factory Tag.fromMap(Map<String, dynamic> map) {
+    if (map == null) return null;
+  
+    return Tag(
+      description: map['description'],
+      selected: map['selected'],
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory Tag.fromJson(String source) => Tag.fromMap(json.decode(source));
+
+  @override
+  String toString() => 'Tag(description: $description, selected: $selected)';
+
+  @override
+  bool operator ==(Object o) {
+    if (identical(this, o)) return true;
+  
+    return o is Tag &&
+      o.description == description &&
+      o.selected == selected;
+  }
+
+  @override
+  int get hashCode => description.hashCode ^ selected.hashCode;
 }

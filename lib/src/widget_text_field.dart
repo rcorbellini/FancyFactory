@@ -16,7 +16,7 @@ class WidgetTextField<T> extends WidgetComponent<TextFieldParameter> {
     Map<TextFieldParameter, dynamic> parameters,
     Key key,
   }) : super(key: key, parameters: parameters);
- 
+
   @override
   Widget build(BuildContext context) {
     return ReactiveTextBuilder(
@@ -25,8 +25,7 @@ class WidgetTextField<T> extends WidgetComponent<TextFieldParameter> {
       builder: (controller, onChanged, error) {
         return TextField(
             decoration: InputDecoration(
-              hintText:
-                  ChamaleonLocalizations.of(context).translate(enumValue.toYamlKey()),
+              hintText: enumValue.toYamlKey().tr(context),
               errorText: error,
             ),
             obscureText: getParameter(TextFieldParameter.obscureText,
