@@ -22,6 +22,8 @@ class WidgetTag<T> extends StatelessWidget {
           itemCount: tags.length,
           itemBuilder: (int index) {
             return ItemTags(
+              elevation: 0,
+              borderRadius: BorderRadius.all(Radius.zero),
               singleItem: false,
               title: tags[index].description,
               index: index,
