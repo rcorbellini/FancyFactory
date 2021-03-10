@@ -4,12 +4,13 @@ import 'package:fancy_stream/fancy_stream.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tags/flutter_tags.dart';
 
-class WidgetTag<T> extends StatelessWidget {
+class WidgetTag<T extends Object> extends StatelessWidget {
   final T enumValue;
-  final Disposable bloc;
-  final Map<String, dynamic> parameters;
+  final Fancy bloc;
+  final Map<String, dynamic>? parameters;
 
-  const WidgetTag({Key key, this.enumValue, this.bloc, this.parameters})
+  const WidgetTag(
+      {Key? key, required this.enumValue, required this.bloc, this.parameters})
       : super(key: key);
 
   @override
@@ -47,16 +48,16 @@ class WidgetTag<T> extends StatelessWidget {
 
 class Tag {
   final String description;
-  final bool selected;
+  final bool? selected;
 
   Tag({
-    this.description,
+    required this.description,
     this.selected,
   });
 
   Tag copyWith({
-    String description,
-    bool selected,
+    String? description,
+    bool? selected,
   }) {
     return Tag(
       description: description ?? this.description,
@@ -71,9 +72,9 @@ class Tag {
     };
   }
 
-  factory Tag.fromMap(Map<String, dynamic> map) {
+  static fromMap(Map<String, dynamic>? map) {
     if (map == null) return null;
-  
+
     return Tag(
       description: map['description'],
       selected: map['selected'],
@@ -90,10 +91,8 @@ class Tag {
   @override
   bool operator ==(Object o) {
     if (identical(this, o)) return true;
-  
-    return o is Tag &&
-      o.description == description &&
-      o.selected == selected;
+
+    return o is Tag && o.description == description && o.selected == selected;
   }
 
   @override

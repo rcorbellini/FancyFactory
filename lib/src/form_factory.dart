@@ -5,19 +5,18 @@ import 'package:fancy_factory/src/widget_switch.dart';
 import 'package:fancy_factory/src/widget_tag.dart';
 import 'package:fancy_factory/src/widget_text_field.dart';
 import 'package:fancy_stream/fancy_stream.dart';
-import 'package:flutter/material.dart'; 
+import 'package:flutter/material.dart';
 
-class FormFactory<T> {
-  final Disposable bloc;
+class FormFactory<T extends Object> {
+  final Fancy bloc;
   final BuildContext context;
 
   FormFactory({
-    @required this.bloc,
-    @required this.context,
-  })  : assert(bloc != null),
-        assert(context != null);
+    required this.bloc,
+    required this.context,
+  });
 
-  Widget build(T enumValue, {Map parameters}) {
+  Widget build(T enumValue, {Map? parameters}) {
     if (!isEnum(enumValue)) {
       throw Exception('Only enums allowed');
     }
@@ -91,9 +90,7 @@ extension EnumKey on Object {
 
 enum EnumPrefix { action, text, dateRange, bool, slider, tag }
 
-
-String enumToString(Object objectEnum) =>
-    objectEnum?.toString()?.split('.')?.last;
+String enumToString(Object objectEnum) => objectEnum.toString().split('.').last;
 
 bool isEnum<T>(T data) {
   final split = data.toString().split('.');

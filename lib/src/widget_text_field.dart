@@ -6,15 +6,16 @@ import 'package:chameleon_resolver/chameleon_resolver.dart';
 
 import 'widget_component.dart';
 
-class WidgetTextField<T> extends WidgetComponent<TextFieldParameter> {
-  final Disposable bloc;
+class WidgetTextField<T extends Object>
+    extends WidgetComponent<TextFieldParameter> {
+  final Fancy bloc;
   final T enumValue;
 
   const WidgetTextField({
-    @required this.bloc,
-    @required this.enumValue,
-    Map<TextFieldParameter, dynamic> parameters,
-    Key key,
+    required this.bloc,
+    required this.enumValue,
+    Map<TextFieldParameter, dynamic>? parameters,
+    Key? key,
   }) : super(key: key, parameters: parameters);
 
   @override

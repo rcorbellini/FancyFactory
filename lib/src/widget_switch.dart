@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:fancy_stream/fancy_stream.dart';
 
-class WidgetSwitch<T> extends StatelessWidget {
+class WidgetSwitch<T extends Object> extends StatelessWidget {
   final T enumValue;
-  final Disposable bloc;
-  final Map<String, dynamic> parameters;
+  final Fancy bloc;
+  final Map<String, dynamic>? parameters;
 
-  const WidgetSwitch({Key key, this.enumValue, this.bloc, this.parameters})
+  const WidgetSwitch(
+      {Key? key, required this.enumValue, required this.bloc, this.parameters})
       : super(key: key);
 
   @override

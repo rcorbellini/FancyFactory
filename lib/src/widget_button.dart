@@ -4,20 +4,19 @@ import 'package:flutter/material.dart';
 import 'package:fancy_stream/fancy_stream.dart';
 import 'package:chameleon_resolver/chameleon_resolver.dart';
 
-class WidgetButton<T> extends WidgetComponent<String> {
-  final Disposable bloc;
+class WidgetButton<T extends Object> extends WidgetComponent<String> {
+  final Fancy bloc;
   final T enumValue;
 
   const WidgetButton(
-      {@required this.bloc,
-      @required this.enumValue,
-      Key key,
-      Map<String, dynamic> parameters})
+      {required this.bloc,
+      required this.enumValue,
+      Key? key,
+      Map<String, dynamic>? parameters})
       : super(key: key, parameters: parameters);
 
   @override
   Widget build(BuildContext context) {
-    
     return FlatButton(
         onPressed: () => bloc.dispatchOn(enumValue),
         child: Text(enumValue.toYamlKey().tr(context)));

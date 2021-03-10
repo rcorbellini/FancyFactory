@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 
 abstract class WidgetComponent<T> extends StatelessWidget {
-  final Map<T, dynamic> parameters;
+  final Map<T, dynamic>? parameters;
 
-  const WidgetComponent({Key key, this.parameters}) : super(key: key);
+  const WidgetComponent({Key? key, this.parameters}) : super(key: key);
 
-  V getParameter<V>(T param, {V defaultValue}) {
+  V getParameter<V>(T param, {required V defaultValue}) {
     if (parameters == null) {
       return defaultValue;
     }
 
-    return parameters[param] as V ?? defaultValue;
+    return parameters![param] as V ?? defaultValue;
   }
-  
 }

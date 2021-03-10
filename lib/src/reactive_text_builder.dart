@@ -4,12 +4,13 @@ import 'package:flutter/material.dart';
 
 import 'form_factory.dart';
 
-class ReactiveTextBuilder<T> extends StatefulWidget {
+class ReactiveTextBuilder<T extends Object> extends StatefulWidget {
   final SnapshotBuilder builder;
-  final T keyForm;
-  final Disposable bloc;
+  final T? keyForm;
+  final Fancy bloc;
 
-  ReactiveTextBuilder({Key key, this.builder, this.keyForm, this.bloc})
+  ReactiveTextBuilder(
+      {Key? key, required this.builder, this.keyForm, required this.bloc})
       : assert(isEnum(keyForm), 'The KeyForm Must be a enum'),
         super(key: key);
 
@@ -36,7 +37,7 @@ class _ReactiveTextBuilderState extends State<ReactiveTextBuilder> {
           return widget.builder(
             _controller,
             (String text) => widget.bloc.dispatchOn(text, key: widget.keyForm),
-            snap?.error?.toString(),
+            snap.error?.toString(),
           );
         });
   }
@@ -45,5 +46,5 @@ class _ReactiveTextBuilderState extends State<ReactiveTextBuilder> {
 typedef SnapshotBuilder = Widget Function(
   TextEditingController textEditingController,
   Function(String text) onChanged,
-  String error,
+  String? error,
 );

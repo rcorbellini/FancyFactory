@@ -4,15 +4,15 @@ import 'package:fancy_factory/src/widget_component.dart';
 import 'package:flutter/material.dart';
 import 'package:fancy_stream/fancy_stream.dart';
 
-class WidgetSlider<T> extends WidgetComponent<SliderParameter> {
-  final Disposable bloc;
+class WidgetSlider<T extends Object> extends WidgetComponent<SliderParameter> {
+  final Fancy bloc;
   final T enumValue;
 
   const WidgetSlider(
-      {Key key,
-      this.bloc,
-      this.enumValue,
-      Map<SliderParameter, dynamic> parameters})
+      {Key? key,
+      required this.bloc,
+      required this.enumValue,
+      Map<SliderParameter, dynamic>? parameters})
       : super(key: key, parameters: parameters);
 
   @override

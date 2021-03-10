@@ -4,15 +4,16 @@ import 'package:fancy_factory/src/widget_component.dart';
 import 'package:flutter/material.dart';
 import 'package:fancy_stream/fancy_stream.dart';
 
-class WidgetDateRange<T> extends WidgetComponent<DateRangeParameter> {
+class WidgetDateRange<T extends Object>
+    extends WidgetComponent<DateRangeParameter> {
   final T enumValue;
-  final Disposable bloc;
+  final Fancy bloc;
 
   const WidgetDateRange(
-      {@required this.enumValue,
-      @required this.bloc,
-      Key key,
-      Map<DateRangeParameter, dynamic> parameters})
+      {required this.enumValue,
+      required this.bloc,
+      Key? key,
+      Map<DateRangeParameter, dynamic>? parameters})
       : super(key: key, parameters: parameters);
 
   @override
